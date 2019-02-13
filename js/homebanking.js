@@ -1,7 +1,7 @@
 //Declaración de variables
 
-var nombreUsuario = "Fernando Diaz";
-var saldoCuenta = 5000;
+var nombreUsuario = prompt("Ingrese su nombre y apellido");
+var saldoCuenta = 10000;
 var limiteExtraccion = 2000;
 
 var servAgua = 350;
@@ -12,7 +12,6 @@ var servInternet = 570;
 var cuentaAmiga1 = 1234567;
 var cuentaAmiga2 = 7654321;
 
-var password = 1234;
 
 var noContenido = undefined;
 var varVacio = "";
@@ -34,23 +33,28 @@ function cambiarLimiteDeExtraccion() {
     }
     nuevoLimite = parseInt(stringLimite);
     
-    if (isNaN(nuevoLimite)){
+    if (isNaN(nuevoLimite) || nuevoLimite < 1){
         return;
-    }
-    alert("Tu nuevo limite de extraccion es: $" + nuevoLimite)
-    limiteExtraccion = nuevoLimite;
-    actualizarLimiteEnPantalla();
+    }else if (nuevoLimite % 100 !== 0){
+        alert("En este homebanking solo podes extraer billetes de $100");
+        return;
+    }else{
+       alert("Tu nuevo limite de extraccion es: $" + nuevoLimite)
+        limiteExtraccion = nuevoLimite;
+        actualizarLimiteEnPantalla();
 
 }
-
+}
 function extraerDinero() {
     var stringResta = prompt('Ingrese la cantidad de dinero que desea extraer');
     cantidadResta = parseInt(stringResta);
     
-    if (isNaN(cantidadResta)){
+    if (isNaN(cantidadResta) || cantidadResta < 1){
 
         return;
     }
+
+    
     // Limite de extraccion
     if (cantidadResta > saldoCuenta) {
         alert("No hay saldo disponible en tu cuenta para extraer esa cantidad de dinero.")
@@ -173,15 +177,15 @@ function transferirDinero() {
 }
 
 function iniciarSesion() {
-
     var pwIngresado = prompt("Ingrese el codigo de su cuenta.");
+    var repetirPw = prompt("Repetir codigo ingresado")
 
-    if (pwIngresado == password) {
-        alert("Bienvenido/a Fernando Díaz ya puedes comenzar a realizar operaciones.");
-    } else {
+    if (pwIngresado !== repetirPw || pwIngresado == varVacio) {
         alert("Codigo incorrecto. Tu dinero ha sido retenido por cuestiones de seguridad.");
         saldoCuenta = 0;
         actualizarSaldoEnPantalla();
+    } else {
+        alert("Bienvenido/a " + nombreUsuario +" ya puedes comenzar a realizar operaciones.");
     }
 
 
