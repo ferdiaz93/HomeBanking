@@ -61,7 +61,7 @@ function extraerDinero() {
     } else {
         saldoAnterior = saldoCuenta;
 
-        saldoCuenta = saldoCuenta - cantidadResta;
+        restaSaldo(cantidadResta);
 
         actualizarSaldoEnPantalla()
         alert("Has extraido: " + cantidadResta + "\n Saldo anterior: " + saldoAnterior + "\n Saldo actual: " + saldoCuenta);
@@ -84,8 +84,7 @@ function depositarDinero() {
     }
 
     saldoAnterior = saldoCuenta;
-
-    saldoCuenta = saldoCuenta + cantidadSuma;
+    sumaSaldo(cantidadSuma);
 
     actualizarSaldoEnPantalla();
     alert("Has depositado: " + cantidadSuma + "\n Saldo anterior: " + saldoAnterior + "\n Saldo actual: " + saldoCuenta);
@@ -103,7 +102,7 @@ function pagarServicio() {
 
             } else {
                 saldoAnterior = saldoCuenta;
-                saldoCuenta = saldoCuenta - servAgua;
+                restaSaldo(servAgua);
                 alert("Haz pagado el servicio de Agua.\n Saldo Anterior: " + saldoAnterior + "\n Dinero descontado: " + servAgua + "\n Saldo actual:" + saldoCuenta);
                 actualizarSaldoEnPantalla();
             }
@@ -114,7 +113,7 @@ function pagarServicio() {
                 alert("No hay suficiente saldo en tu cuenta para pagar este servicio.");
             } else {
                 saldoAnterior = saldoCuenta;
-                saldoCuenta = saldoCuenta - servLuz;
+                restaSaldo(servLuz)
                 alert("Haz pagado el servicio de Luz.\n Saldo Anterior: " + saldoAnterior + "\n Dinero descontado: " + servLuz + "\n Saldo actual:" + saldoCuenta);
                 actualizarSaldoEnPantalla();
             }
@@ -125,7 +124,7 @@ function pagarServicio() {
                 alert("No hay suficiente saldo en tu cuenta para pagar este servicio.");
             } else {
                 saldoAnterior = saldoCuenta;
-                saldoCuenta = saldoCuenta - servInternet;
+                restaSaldo(servInternet);
                 alert("Haz pagado el servicio de Internet.\n Saldo Anterior: " + saldoAnterior + "\n Dinero descontado: " + servInternet + "\n Saldo actual:" + saldoCuenta);
                 actualizarSaldoEnPantalla();
             }
@@ -161,7 +160,7 @@ function transferirDinero() {
         validarCuenta = parseInt(validarString);
 
         if (validarCuenta == cuentaAmiga1 || validarCuenta == cuentaAmiga2) {
-            saldoCuenta = saldoCuenta - montoTrans;
+            restaSaldo(montoTrans);
             alert("Se han transferido: " + montoTrans + "\n Cuenta destino: " + validarCuenta);
             actualizarSaldoEnPantalla();
         } else {
